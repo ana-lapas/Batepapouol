@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="style.css">
+    <title>Bate Papo UOL</title>
+</head>
+<body>
+    <div class="barraSuperior">
+        <div class="logo">
+            <img src="Imagens/logo.png" />
+        </div>
+        <div class="iconeMenu" onclick="mostrarSidebar()">
+            <ion-icon name="people"></ion-icon>
+        </div>
+    </div>
+    
+    <div class="sidebar escondido">
+        <div class="escolhaContato">Escolha um contato para enviar uma mensagem:</div>
+        <ul class="usuariosOnline">
+            <li class="linhaSidebar" onclick="selecaoPessoa(this)"><ion-icon class="iconeS" name="people"></ion-icon><p>Todos</p></li>
+            <li class="linhaSidebar" onclick="selecaoPessoa(this)"><ion-icon class="iconeS" name="person-circle"></ion-icon><p>João</p></li>
+            <li class="linhaSidebar" onclick="selecaoPessoa(this)"><ion-icon class="iconeS" name="person-circle"></ion-icon><p>Maria</p></li>
+        </ul>
+        <div class="escolhaVisibilidade">Escolha a visibilidade:</div>
+        <div class="inferior">
+            <div class="linhaSidebarII" onclick="selecaoVisibilidade(this)"><ion-icon class="iconeS" name="lock-open"></ion-icon><p>Público</p><ion-icon class="check" name="checkmark-sharp"></ion-icon></div>
+            <div class="linhaSidebarII" onclick="selecaoVisibilidade(this)"><ion-icon class="iconeS" name="lock-closed"></ion-icon><p>Privado</p><ion-icon class="check" name="checkmark-sharp"></ion-icon></div>
+        </div>
+    </div>
+    
+    <ul class="espacoMensagens">
+        AQUI VAO AS MENSAGENS
+        <li class="normal">teste1<div class="p3">(${dadosMensagens[i].time})</div> <div class="p1"> ${dadosMensagens[i].from} </div> <div class="p2"> para</div> <div class="p1"> Todos</div><div class="p2">: ksdjnjdsb/////</div></li>
+        <li class="status"><div class="p3">(${dadosMensagens[i].time})</div> <div class="p1"> ${dadosMensagens[i].from} </div> para <div class="p1"> Todos</div>: ${dadosMensagens[i].text</li>
+    </ul>
+
+    <div class="barraInferior">
+    <input type="text" placeholder="Escreva aqui...">
+    <button><ion-icon class="aviao" onclick="enviarMensagens()" name="paper-plane-outline"></ion-icon></button>
+    </div>
+
+
+    
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,177 @@
+/* ICONES 
+<ion-icon name="people"></ion-icon> DUAS PESSOINHAS
+<ion-icon name="lock-closed"></ion-icon> CADEADO FECHADO
+<ion-icon name="lock-open"></ion-icon> CADEADO ABERTO
+<ion-icon name="lock-open"></ion-icon> AVINHÃOZINHO 
+<ion-icon name="person-circle"></ion-icon> Pessoa no circulo*/
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+/*TAGS*/
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #e5e5e5;
+}
+p{
+    font-size: 18px;
+}
+button {
+    border: none;
+    background-color: #ffffff;
+}
+input{
+    border: 3px solid #ffffff;
+    box-sizing: border-box;
+    font-size: 18px;
+    font-style: italic;
+    margin: 0;
+    padding: 13px 13px 13px 20px;
+    width: 100%;
+    height: 100%;
+    outline: none;
+}
+
+/*CLASSE*/
+.barraSuperior {
+    height: 80px;
+    width: 335px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ffffff;
+    z-index: 1;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    box-shadow: -2px 8px 15px -7px rgba(0,0,0,0.50);
+}
+.logo {
+    width: 75px;
+    height: 53px;
+    margin-left: 22px;
+}
+.iconeMenu {
+    font-size: 43px;
+    height: 30px;
+    width: 40px;
+    margin-right: 22px;
+    margin-bottom: 20px;
+}
+.barraInferior {
+    background-color: #ffffff;
+    height: 80px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1;
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    box-shadow: -6px -5px 10px -2px rgba(0,0,0,0.50);
+}
+.aviao {
+    font-size: 34px;
+    margin-right: 20px;
+}
+.espacoMensagens{
+    background-color: aqua;
+    width: 100%;
+    margin-top: 106px;
+    z-index: 0;
+}
+.normal, .status, .reservada {
+    display: flex;
+    flex-wrap: wrap;
+    background-color: #ffffff;
+    margin-bottom: 4px;
+    width: 100%;    
+    padding-top: 15px;
+    padding-bottom: 15px;
+    padding-left: 10px; 
+}
+.status{
+    background-color: #dcdcdc;
+    width: 100%;
+    display: flex;
+    margin-bottom: 4px;
+}
+.reservada {
+    background-color: #ffdede;
+    margin-bottom: 4px;
+}
+.p1{
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 16.5px;
+    margin-left: 8px;
+}
+.p2, .p3{
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 16.5px;
+}
+.p3{
+    color: #AAAAAA;
+}
+
+.sidebar{
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 259px;
+    height: 100%;
+    position: fixed;
+    right: 0;
+    top: 0;
+    box-shadow:-44px 5px 6px 116px rgba(0,0,0,0.57);
+    z-index: 2;
+}
+.check {
+    font-size: 20px;
+    color: #ffffff;
+    font-weight: 400;
+    justify-self: flex-end;
+}
+.escondido {
+    display: none;
+}
+.escolhaContato, .escolhaVisibilidade {
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 18.75px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+.escolhaContato{
+    height: 85px;
+    text-align: center;
+}
+.escolhaVisibilidade {
+    height: 88px;
+    text-align: center;
+}
+.selecionado {
+    color: #28bb25;
+}
+.linhaSidebar, .linhaSidebarII {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    height: 36px;
+    width: 100%;
+}
+.iconeS{
+    font-size: 20px;
+    margin-left: 18px;
+    margin-right: 9px;
+}

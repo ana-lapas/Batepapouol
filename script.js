@@ -1,7 +1,6 @@
 let usuariosOnline = [];
 const novoUsuario = prompt("Olá, qual seu nome?");
 
-console.log(usuariosOnline);
 function mostrarSidebar(){
     const mostrar = document.querySelector(".sidebar");
     const contem = mostrar.classList.contains("escondido");
@@ -24,16 +23,13 @@ function selecaoVisibilidade(visibilidadeSelecionada){
         visibilidadeSelecionadaanteriormente.classList.remove("selecionado");
     }
     visibilidadeSelecionada.classList.add("selecionado");
-    console.log(visibilidadeSelecionada)
 }
 function cadastroUsuariosOn() {
     const cadastroUsuario = {
         name: novoUsuario
     };
-    console.log("vai vir o cadastro usuario");
-    console.log(cadastroUsuario);
     const promessa = axios.post("https://mock-api.driven.com.br/api/v6/uol/participants", cadastroUsuario);    
-    promessa.then(entreiNaSala);//se der certo
+    promessa.then(pegarUsuarios);//se der certo
     promessa.catch(mostraErro);//se der errado
 }
 /*function entreiNaSala(){
@@ -42,16 +38,12 @@ function cadastroUsuariosOn() {
         text: "entra na sala...",
         type: "status"
     }
-    console.log("vai vir o entrei na sala");
-    console.log(mensagemFormato);
     const promessa = axios.post("https://mock-api.driven.com.br/api/v6/uol/messages",mensagemFormato);
     promessa.then(buscarMensagens);
     promessa.catch(mostraErro);
 }*/
 function enviarMensagens(){
     const mensagemDigitada = document.querySelector("input").value;
-    console.log("aq vai a msg digitada")
-    console.log(mensagemDigitada)
     const mensagemFormato = {from: novoUsuario,
 	to: "Todos",
 	text: mensagemDigitada,
@@ -68,51 +60,57 @@ function buscarMensagens(){
 
 }
 function renderizarMensagens(resposta){
-    console.log("Pegando as mensagens")
     const dadosMensagens = resposta.data;
-    console.log(dadosMensagens);
     const inserirMensagens = document.querySelector(".espacoMensagens");
-    console.log(inserirMensagens);
     for(let i =0; i <dadosMensagens.length; i++){
-        console.log(dadosMensagens[i])
         if((dadosMensagens[i].text === "entra na sala...") || (dadosMensagens[i].text === "sai da sala...") ){
-            let msg = `<div class="p3">(${dadosMensagens[i].time})</div> <div class="p1"> ${dadosMensagens[i].from} </div> para <div class="p1"> Todos</div>: ${dadosMensagens[i].text}`;
-            console.log(msg);
-            inserirMensagens.innerHTML += `<li class="status">${msg}</li>`;}
-         else {
-            let msg = `<div class="p3">(${dadosMensagens[i].time})</div> <div class="p1"> ${dadosMensagens[i].from} </div> para <div class="p1"> Todos</div>: ${dadosMensagens[i].text}`;
-            console.log(msg);
+            let msg = `<span class="p3">(${dadosMensagens[i].time})</span> &nbsp;&nbsp;<span class="p1"> ${dadosMensagens[i].from} </span>&nbsp;&nbsp;<span class="p2"> para </span>&nbsp;&nbsp;<span class="p1"> ${dadosMensagens[i].to}</span><span class="p2">:&nbsp;&nbsp; ${dadosMensagens[i].text}</span>`;
+            inserirMensagens.innerHTML += `<li class="status">${msg}</li>`;
+            inserirMensagens.scrollIntoView();
+        } else {
+            let msg = `<span class="p3">(${dadosMensagens[i].time})</span> &nbsp;&nbsp;<span class="p1"> ${dadosMensagens[i].from} </span>&nbsp;&nbsp;<span class="p2"> para </span>&nbsp;&nbsp;<span class="p1"> ${dadosMensagens[i].to}</span><span class="p2">:&nbsp;&nbsp; ${dadosMensagens[i].text}</span>`;
+            
             inserirMensagens.innerHTML += `<li class="normal">${msg}</li>`;
+            inserirMensagens.scrollIntoView();
         }
     }
-
 }
 function pegarUsuarios(){
-    console.log("Pegando usuarios");
     const promessa = axios.get("https://mock-api.driven.com.br/api/v6/uol/participants");
-    console.log(promessa);
-    promessa.then(renderizarUsuarios);//se der certo
+    promessa.then(verificarUsuarios);//se der certo
     promessa.catch(mostraErro);//se der errado
 }
+let listaUsers;
+function verificarUsuarios(resposta1){
+    listaUsers = resposta1.data;
+    console.log("aqui lita")
+    console.log(listaUsers)
+    for (let i = 0; i < listaUsers.length; i++){
+        if (novoUsuario === listaUsers[i].name){
+            novoUsuario = prompt("Usuário já online, escolha outro nome");
+        } else {
+            console.log("Nome não repetido")
+            renderizarUsuarios();
+        }
+    }
+}
 function renderizarUsuarios(res){
-    console.log("Deu certo");
-    usuariosOnline.push(res.data);
-    const users = res.data;
-    console.log("vai vir os usuarios")
-    console.log(users);
+    usuariosOnline.push(res);
+    const users = res;
     const listaUsuariosOnline = document.querySelector(".usuariosOnline");
-    console.log(listaUsuariosOnline);
-    for(let i = 0; i < usuariosOnline.length; i++){
-        listaUsuariosOnline.innerHTML += `<li class="linhaSidebar"><ion-icon class="iconeS" name="person-circle"></ion-icon><p>${users[i].name}</p></li>`
+    for(let i = 0; i < listaUsers.length; i++){
+        const usuario = `<li class="linhaSidebar"><ion-icon class="iconeS" name="person-circle"></ion-icon><p>${listaUsers[i].name}</p></li>`
+        listaUsuariosOnline.innerHTML += usuario;
+        listaUsuariosOnline.scrollIntoView();
     }
 }
 function mostraErro(err){
-    console.log("não deu certo");
     if(err.response.status === 400){
-        alert("Usuário já online, escolha outro nome");
-        console.log(err.response);
+        novoUsuario = prompt("Usuário já online, escolha outro nome");
+        pegarUsuarios();
     }
 }
 cadastroUsuariosOn();
+pegarUsuarios();
 buscarMensagens();
 setInterval(buscarMensagens, 5000);

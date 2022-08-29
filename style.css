@@ -34,7 +34,7 @@ input{
 /*CLASSE*/
 .barraSuperior {
     height: 80px;
-    width: 335px;
+    width: 100%;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -61,6 +61,7 @@ input{
 .barraInferior {
     background-color: #ffffff;
     height: 80px;
+    width: 100%;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -76,7 +77,6 @@ input{
     margin-right: 20px;
 }
 .espacoMensagens{
-    background-color: aqua;
     width: 100%;
     margin-top: 106px;
     z-index: 0;
@@ -106,7 +106,6 @@ input{
     font-size: 14px;
     font-weight: 700;
     line-height: 16.5px;
-    margin-left: 8px;
 }
 .p2, .p3{
     font-family: 'Roboto', sans-serif;
